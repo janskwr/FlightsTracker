@@ -1,0 +1,3 @@
+module FlightFinder {
+    requires json;
+}
