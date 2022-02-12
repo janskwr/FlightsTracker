@@ -5,13 +5,13 @@ public class Flight {
     public Flight(){
     }
 
-    public Flight(String icao24, int firstSeen, String estDepartureTime, int lastSeen, String estArrivalAirport,
+    public Flight(String icao24, int firstSeen, String estDepartureAirport, int lastSeen, String estArrivalAirport,
                   String callsign, int estDepartureAirportHorizDistance, int estDepartureAirportVertDistance,
                   int estArrivalAirportHorizDistance, int estArrivalAirportVertDistance,
                   int departureAirportCandidatesCount, int arrivalAirportCandidatesCount) {
         this.icao24 = icao24;
         this.firstSeen = firstSeen;
-        this.estDepartureTime = estDepartureTime;
+        this.estDepartureAirport = estDepartureAirport;
         this.lastSeen = lastSeen;
         this.estArrivalAirport = estArrivalAirport;
         this.callsign = callsign;
@@ -25,7 +25,7 @@ public class Flight {
 
     private String icao24;
     private int firstSeen;
-    private String estDepartureTime;
+    private String estDepartureAirport;
     private int lastSeen;
     private String estArrivalAirport;
     private String callsign;
@@ -52,12 +52,12 @@ public class Flight {
         this.firstSeen = firstSeen;
     }
 
-    public String getEstDepartureTime() {
-        return estDepartureTime;
+    public String getEstDepartureAirport() {
+        return estDepartureAirport;
     }
 
-    public void setEstDepartureTime(String estDepartureTime) {
-        this.estDepartureTime = estDepartureTime;
+    public void setEstDepartureAirport(String estDepartureAirport) {
+        this.estDepartureAirport = estDepartureAirport;
     }
 
     public int getLastSeen() {
@@ -134,10 +134,10 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "RawFlight{" +
+        return "Flight{" +
                 "icao24='" + icao24 + '\'' +
                 ", firstSeen=" + firstSeen +
-                ", estDepartureTime='" + estDepartureTime + '\'' +
+                ", estDepartureAirport='" + estDepartureAirport + '\'' +
                 ", lastSeen=" + lastSeen +
                 ", estArrivalAirport='" + estArrivalAirport + '\'' +
                 ", callsign='" + callsign + '\'' +

@@ -8,7 +8,7 @@ import retrofit2.Response;
 
 import java.util.List;
 
-public class FlightsServices implements Callback<List<Flight>> {
+abstract public class FlightsServices implements Callback<List<Flight>> {
 
     public void getFlightsFromBeginToEnd(int begin, int end) {
 
@@ -18,11 +18,36 @@ public class FlightsServices implements Callback<List<Flight>> {
 
     }
 
+    public void getFlightsFromBeginToEndByAircraft(String icao24, int begin, int end) {
+
+        RetrofitServiceGenerator retrofitServiceGenerator = new RetrofitServiceGenerator();
+        Call<List<Flight>> call = retrofitServiceGenerator.generate().getFlightsByAircraft(icao24, begin, end);
+        call.enqueue(this);
+
+    }
+
+    public void getFlightsFromBeginToEndByArrival(String airport, int begin, int end) {
+
+        RetrofitServiceGenerator retrofitServiceGenerator = new RetrofitServiceGenerator();
+        Call<List<Flight>> call = retrofitServiceGenerator.generate().getFlightsByArrival(airport, begin, end);
+        call.enqueue(this);
+
+    }
+
+    public void getFlightsFromBeginToEndByDeparture(String airport, int begin, int end) {
+
+        RetrofitServiceGenerator retrofitServiceGenerator = new RetrofitServiceGenerator();
+        Call<List<Flight>> call = retrofitServiceGenerator.generate().getFlightsByDeparture(airport, begin, end);
+        call.enqueue(this);
+
+    }
+
+
     @Override
     public void onResponse(Call<List<Flight>> call, Response<List<Flight>> response) {
         if (response.isSuccessful()) {
-            List<Flight> changesList = response.body();
-            changesList.forEach(System.out::println);
+            List<Flight> flightsList = response.body();
+            flightsList.forEach(System.out::println);
         } else {
             System.out.println(response.errorBody());
         }
