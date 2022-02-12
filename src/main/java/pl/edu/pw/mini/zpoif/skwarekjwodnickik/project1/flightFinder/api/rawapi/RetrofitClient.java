@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RetrofitClient implements Callback<List<RawFlight>> {
 
-    static final String BASE_URL = "https://opensky-network.org/api/";
+    static final String BASE_URL = "https://opensky-network.org/";
 
     public void start() {
         Gson gson = new GsonBuilder()
@@ -27,7 +27,7 @@ public class RetrofitClient implements Callback<List<RawFlight>> {
 
         APIService apiService = retrofit.create(APIService.class);
 
-        Call<List<RawFlight>> call = apiService.getFlights();
+        Call<List<RawFlight>> call = apiService.getFlights(1517227200, 1517230800);
         call.enqueue(this);
     }
 
@@ -35,7 +35,7 @@ public class RetrofitClient implements Callback<List<RawFlight>> {
     public void onResponse(Call<List<RawFlight>> call, Response<List<RawFlight>> response) {
         if(response.isSuccessful()) {
             List<RawFlight> changesList = response.body();
-            changesList.forEach(change -> System.out.println(change.getEstArrivalAirport()));
+            changesList.forEach(System.out::println);
         } else {
             System.out.println(response.errorBody());
         }
