@@ -10,6 +10,11 @@ import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Ta klasa zawiera początkowy sposób łączenia z API.
+ * Użyjemy jednak Retrofit'a. To można potem usunąć.
+ */
+
 public class APIConnector {
     public APIConnector() {
     }
