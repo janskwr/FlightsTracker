@@ -1,14 +1,14 @@
 package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.model;
 
-public class RawFlight {
+public class Flight {
 
-    public RawFlight(){
+    public Flight(){
     }
 
-    public RawFlight(String icao24, int firstSeen, String estDepartureTime, int lastSeen, String estArrivalAirport,
-                     String callsign, int estDepartureAirportHorizDistance, int estDepartureAirportVertDistance,
-                     int estArrivalAirportHorizDistance, int estArrivalAirportVertDistance,
-                     int departureAirportCandidatesCount, int arrivalAirportCandidatesCount) {
+    public Flight(String icao24, int firstSeen, String estDepartureTime, int lastSeen, String estArrivalAirport,
+                  String callsign, int estDepartureAirportHorizDistance, int estDepartureAirportVertDistance,
+                  int estArrivalAirportHorizDistance, int estArrivalAirportVertDistance,
+                  int departureAirportCandidatesCount, int arrivalAirportCandidatesCount) {
         this.icao24 = icao24;
         this.firstSeen = firstSeen;
         this.estDepartureTime = estDepartureTime;
