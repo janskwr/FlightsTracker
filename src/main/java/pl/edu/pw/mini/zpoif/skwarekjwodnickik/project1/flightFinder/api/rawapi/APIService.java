@@ -9,15 +9,15 @@ import java.util.List;
 public interface APIService {
 
     @GET("/flights/all")
-    public Call<List<RawFlight>> getFlights();
+    Call<List<RawFlight>> getFlights();
 
-    //@GET("/flights/")
-
-    //@GET("/getProductsByName/{name}")
-    //Call<Product> getProduct(@Path("name") String name);
-
-    //@POST("/addProduct")
-    //Call<Void> addProduct(@Body Product product);
+//    @GET("/flights/")
+//
+//    @GET("/getProductsByName/{name}")
+//    Call<Product> getProduct(@Path("name") String name);
+//
+//    @POST("/addProduct")
+//    Call<Void> addProduct(@Body Product product);
 
 
 }
