@@ -1,5 +1,6 @@
 package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +31,7 @@ public class Controller {
 
     @FXML
     private void initialize() throws FileNotFoundException, URISyntaxException {
-        ObservableList<String> airports = Converters.allIcaos();
+        ObservableList<String> airports = FXCollections.observableArrayList("AAA", "BCD", "PQR");//Converters.allIcaos();
 
         origin.setItems(airports);
         destination.setItems(airports);

@@ -17,6 +17,7 @@ public class MainGUI extends Application{
     public void start(Stage stage) throws Exception {
         TitledPane mainPane = (TitledPane) FXMLLoader.load(new File("src/main/resources/MainPage.fxml").toURI().toURL());
         stage.setScene(new Scene(mainPane));
+        stage.setTitle("Flights Finder");
         stage.show();
     }
 }
