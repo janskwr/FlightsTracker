@@ -5,27 +5,32 @@ import javafx.collections.ObservableList;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Converters {
 
-    public Date UnixToRoman(int unixdate){
+    public static Date localDatetoDate(LocalDate dateToConvert) {
+        return java.sql.Date.valueOf(dateToConvert);
+    }
+
+    public static Date UnixToRoman(int unixdate){
 
         Date time = new Date((long)unixdate*1000);
         return time;
 
     }
 
-    public int RomanToUnix(Date romandate){
+    public static int RomanToUnix(Date romandate){
 
         int time = (int) (romandate.getTime() / 1000);
         return time;
 
     }
 
-    public String IcaoToName(String icao) throws FileNotFoundException, URISyntaxException {
+    public static String IcaoToName(String icao) throws FileNotFoundException, URISyntaxException {
 
         AirportsData airportsData = new AirportsData();
         List<Airport> airports = airportsData.CSVConverter();
@@ -37,7 +42,7 @@ public class Converters {
         return null;
     }
 
-    public String NameToIcao(String name) throws FileNotFoundException, URISyntaxException {
+    public static String NameToIcao(String name) throws FileNotFoundException, URISyntaxException {
 
         AirportsData airportsData = new AirportsData();
         List<Airport> airports = airportsData.CSVConverter();
@@ -49,7 +54,7 @@ public class Converters {
         return null;
     }
 
-    public String[] IcaoToCoordinates(String icao) throws FileNotFoundException, URISyntaxException {
+    public static String[] IcaoToCoordinates(String icao) throws FileNotFoundException, URISyntaxException {
 
         AirportsData airportsData = new AirportsData();
         List<Airport> airports = airportsData.CSVConverter();
@@ -62,7 +67,7 @@ public class Converters {
         return null;
     }
 
-    public String[] NameToCoordinates(String name) throws FileNotFoundException, URISyntaxException {
+    public static String[] NameToCoordinates(String name) throws FileNotFoundException, URISyntaxException {
 
         AirportsData airportsData = new AirportsData();
         List<Airport> airports = airportsData.CSVConverter();
