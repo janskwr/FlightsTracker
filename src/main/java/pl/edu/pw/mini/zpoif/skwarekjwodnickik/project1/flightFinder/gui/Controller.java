@@ -14,33 +14,32 @@ import java.net.URISyntaxException;
 public class Controller {
 
     @FXML
-    public ChoiceBox<String> destination;
+    private ChoiceBox<String> destination;
 
     @FXML
-    public ChoiceBox<String> origin;
+    private ChoiceBox<String> origin;
 
     @FXML
-    public DatePicker dateEnd;
+    private DatePicker dateEnd;
 
     @FXML
-    public DatePicker dateStart;
+    private DatePicker dateStart;
 
     @FXML
     private ListView<String> resultList;
 
     @FXML
     private void initialize() throws FileNotFoundException, URISyntaxException {
-//        Converters converters = new Converters();
-//        ObservableList<String> airports = Converters.allIcaos();
+        ObservableList<String> airports = Converters.allIcaos();
 
-//        origin.setItems(airports);
-//        destination.setItems(airports);
+        origin.setItems(airports);
+        destination.setItems(airports);
     }
 
     @FXML
     void search(ActionEvent event) {
         resultList.getItems().clear();
-        resultList.getItems().addAll(Tmp.getList(this));
+        resultList.getItems().addAll(origin.getValue(), destination.getValue());
     }
 
 }
