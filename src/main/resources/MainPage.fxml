@@ -1,15 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui.Controller">
-   <children>
-      <Button layoutX="353.0" layoutY="167.0" mnemonicParsing="false" onAction="#onClick" text="Klik" />
-      <Label layoutX="133.0" layoutY="132.0" text="Napisz tu coś:" />
-      <TextField fx:id="my_text" layoutX="225.0" layoutY="128.0" />
-   </children>
-</Pane>
+<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Flights Finder" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui.Controller">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Date range:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutY="18.0" prefWidth="40.0" text="From:" />
+                              <Label layoutY="50.0" prefWidth="40.0" text="To:" />
+                              <DatePicker fx:id="dateEnd" layoutX="40.0" layoutY="46.0" />
+                              <DatePicker fx:id="dateStart" layoutX="40.0" layoutY="14.0" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Route:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutY="20.0" prefWidth="80.0" text="Origin:" />
+                              <Label layoutY="51.0" prefWidth="80.0" text="Destination:" />
+                              <ChoiceBox fx:id="origin" layoutX="80.0" layoutY="16.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="destination" layoutX="80.0" layoutY="47.0" prefWidth="150.0" />
+                           </children>
+                        </Pane>
+                        <Button mnemonicParsing="false" onAction="#search" text="Serach flights" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <ListView fx:id="resultList" layoutY="14.0" prefHeight="339.0" prefWidth="288.0" />
+                        <Label text="Search results:">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+         </children></AnchorPane>
+  </content>
+</TitledPane>
