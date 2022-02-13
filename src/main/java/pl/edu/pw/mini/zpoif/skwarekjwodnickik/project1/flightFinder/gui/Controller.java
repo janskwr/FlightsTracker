@@ -12,15 +12,14 @@ import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Conver
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
-import java.util.Date;
 
 public class Controller {
 
     @FXML
-    private ChoiceBox<String> destination;
+    private ListView<String> destination;
 
     @FXML
-    private ChoiceBox<String> origin;
+    private ListView<String> origin;
 
     @FXML
     private DatePicker dateEnd;
@@ -33,10 +32,13 @@ public class Controller {
 
     @FXML
     private void initialize() throws FileNotFoundException, URISyntaxException {
-        ObservableList<String> airports = FXCollections.observableArrayList("AAA", "BCD", "PQR");//Converters.allIcaos();
+        ObservableList<String> airports = Converters.allIcaos();
 
-        origin.setItems(airports);
-        destination.setItems(airports);
+        origin.getItems().clear();
+        origin.getItems().addAll(airports);
+
+        destination.getItems().clear();
+        destination.getItems().addAll(airports);
     }
 
     @FXML
@@ -45,7 +47,6 @@ public class Controller {
         FlightsServicesStandard fss = new FlightsServicesStandard();
         fss.getFlightsFromBeginToEnd(Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
                 Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
-        resultList.getItems().addAll(origin.getValue(), destination.getValue());
     }
 
 }
