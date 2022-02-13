@@ -34,6 +34,7 @@ public class Controller {
 
     @FXML
     void search(ActionEvent event) {
+        // komentarz
         resultList.getItems().clear();
         resultList.getItems().addAll(Tmp.getList(this));
     }
