@@ -43,10 +43,15 @@ public class Controller {
 
     @FXML
     void search(ActionEvent event) {
+        String originValue = origin.getSelectionModel().getSelectedItem();
+        String destinationValue = destination.getSelectionModel().getSelectedItem();
+
         resultList.getItems().clear();
-        FlightsServicesStandard fss = new FlightsServicesStandard();
-        fss.getFlightsFromBeginToEnd(Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
-                Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
+        resultList.getItems().addAll(originValue, destinationValue);
+
+        //FlightsServicesStandard fss = new FlightsServicesStandard();
+        //fss.getFlightsFromBeginToEnd(Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
+        //        Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
     }
 
 }
