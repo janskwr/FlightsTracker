@@ -1,7 +1,5 @@
-package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.GUI;
+package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui;
 
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,23 +9,25 @@ import javafx.scene.control.ListView;
 
 public class Controller {
 
-    private ObservableList<String> airports;
+    @FXML
+    public ChoiceBox<String> destination;
 
     @FXML
-    private ChoiceBox<String> destination;
+    public ChoiceBox<String> origin;
 
     @FXML
-    private ChoiceBox<String> origin;
+    public DatePicker dateEnd;
 
     @FXML
-    private DatePicker dateSelector;
+    public DatePicker dateStart;
 
     @FXML
     private ListView<String> resultList;
 
     @FXML
     private void initialize() {
-        airports = Tmp.getCodes();
+        ObservableList<String> airports = Tmp.getCodes();
+
         origin.setItems(airports);
         destination.setItems(airports);
     }
@@ -35,7 +35,7 @@ public class Controller {
     @FXML
     void search(ActionEvent event) {
         resultList.getItems().clear();
-        resultList.getItems().addAll(Tmp.getList(origin.getValue(), destination.getValue()));
+        resultList.getItems().addAll(Tmp.getList(this));
     }
 
 }

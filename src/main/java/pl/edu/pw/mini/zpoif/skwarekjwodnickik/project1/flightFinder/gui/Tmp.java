@@ -1,4 +1,4 @@
-package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.GUI;
+package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,11 +10,12 @@ public class Tmp {
         return FXCollections.observableArrayList("AAA", "ABC", "PQR");
     }
 
-    public static ArrayList<String> getList(String a1, String a2) {
+    public static ArrayList<String> getList(Controller c) {
         ArrayList<String> res = new ArrayList<String>();
-        res.add("From "+a1+" to "+a2+".");
-        res.add(a1);
-        res.add(a2);
+        res.add(c.origin.getValue());
+        res.add(c.destination.getValue());
+        res.add(String.valueOf(c.dateStart.getValue()));
+        res.add(String.valueOf(c.dateEnd.getValue()));
         return res;
     }
 

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Flights Finder" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.GUI.Controller">
+<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Flights Finder" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui.Controller">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
@@ -45,8 +45,8 @@
                               </Label>
                               <Label layoutY="18.0" prefWidth="40.0" text="From:" />
                               <Label layoutY="50.0" prefWidth="40.0" text="To:" />
-                              <DatePicker fx:id="dateSelector" layoutX="40.0" layoutY="46.0" />
-                              <DatePicker layoutX="40.0" layoutY="14.0" />
+                              <DatePicker fx:id="dateEnd" layoutX="40.0" layoutY="46.0" />
+                              <DatePicker fx:id="dateStart" layoutX="40.0" layoutY="14.0" />
                            </children>
                         </Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
