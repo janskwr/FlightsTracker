@@ -1,7 +1,10 @@
 package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model;
 
+import javafx.collections.ObservableList;
+
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -70,5 +73,17 @@ public class Converters {
         }
         return null;
     }
+
+//    public static ObservableList<String> allIcaos() throws FileNotFoundException, URISyntaxException {
+//
+//        AirportsData airportsData = new AirportsData();
+//        List<Airport> airports = airportsData.CSVConverter();
+//        ObservableList<String> result = new ObservableList<>();
+//        for(Airport airport : airports){
+//            result.add(airport.getIcao());
+//        }
+//        return result;
+//
+//    }
 
 }
