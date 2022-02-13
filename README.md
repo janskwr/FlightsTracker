@@ -97,7 +97,18 @@ It's our project for Advanced OOP Classes. It's basically a full stack applicati
 ## Installation
 
 1. Download/clone all files from this repository.
-2. Now you can open and use our Java program with full functionality!
+2. Open folder with files in terminal.
+3. Type:
+   ```bash
+   ./requirements.sh
+   ```
+   Don't worry! It will ask for your permission before installation of each package.
+4. If it doesn't work, try:
+   ```bash
+   sudo chmod +x requirements.sh
+   ./requirements.sh
+   ```
+5. Now you can open and use our Java program with full functionality!
 
 
 
