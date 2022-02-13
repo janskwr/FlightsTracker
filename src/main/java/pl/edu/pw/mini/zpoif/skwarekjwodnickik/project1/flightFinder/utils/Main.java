@@ -2,26 +2,23 @@ package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.utils;
 
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServices;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServicesStandard;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Airport;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.AirportsData;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Converters;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.List;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        //APIConnector api = new APIConnector();
-        //api.printAllStates();
+    public static void main(String[] args) throws IOException, URISyntaxException {
 
-//        APIService service = RetrofitClient.createService(APIService.class);
-//        Response<List<RawFlight>> response = service.getFlights().execute();
-//        List<RawFlight> rawFlights = response.body();
-//        assert rawFlights != null;
-//        rawFlights.stream().forEach(System.out::println);
+        Converters converters = new Converters();
+        System.out.println(converters.IcaoToName("XIUW"));
 
-        FlightsServices flightsServicesStandard = new FlightsServicesStandard();
-//        flightsServices.getFlightsFromBeginToEnd(1517227200, 1517230800);
-        flightsServicesStandard.getFlightsFromBeginToEndByAircraft("40721b", 1517227200, 1517230800);
     }
 
-    ;
+
 }
 

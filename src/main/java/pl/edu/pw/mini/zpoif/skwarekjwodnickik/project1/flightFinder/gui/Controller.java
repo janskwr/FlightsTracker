@@ -1,4 +1,4 @@
-package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.GUI;
+package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
