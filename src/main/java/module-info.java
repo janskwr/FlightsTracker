@@ -4,6 +4,7 @@ module FlightFinder {
     requires retrofit2;
     requires okhttp3;
     requires com.google.gson;
+    requires okhttp3.logging;
     requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;

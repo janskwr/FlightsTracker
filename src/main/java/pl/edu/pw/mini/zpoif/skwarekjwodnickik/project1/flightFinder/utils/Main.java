@@ -1,6 +1,7 @@
 package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.utils;
 
-import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.RetrofitClient;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServices;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServicesStandard;
 
 import java.io.IOException;
 
@@ -16,8 +17,9 @@ public class Main {
 //        assert rawFlights != null;
 //        rawFlights.stream().forEach(System.out::println);
 
-        RetrofitClient retrofitClient = new RetrofitClient();
-        retrofitClient.start();
+        FlightsServices flightsServicesStandard = new FlightsServicesStandard();
+//        flightsServices.getFlightsFromBeginToEnd(1517227200, 1517230800);
+        flightsServicesStandard.getFlightsFromBeginToEndByAircraft("40721b", 1517227200, 1517230800);
     }
 
     ;
