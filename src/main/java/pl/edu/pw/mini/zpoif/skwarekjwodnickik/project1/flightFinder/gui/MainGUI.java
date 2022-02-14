@@ -10,8 +10,9 @@ import java.io.File;
 
 public class MainGUI extends Application{
     /*
-
+    MainGUI class initializes whole application and graphical user interface
      */
+
     public static void main(String[] args) {
         launch(args);
     }
