@@ -6,10 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Callback;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.model.Flight;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServices;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Converters;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -89,11 +93,26 @@ public class Controller {
 
     @FXML
     void search(ActionEvent event) {
-        String originValue = origin.getSelectionModel().getSelectedItem();
-        String destinationValue = destination.getSelectionModel().getSelectedItem();
+        ArrayList<Flight> flights;
+        try {
+            flights = FlightsServices.
+                    getFlightsFromBeginToEndByDepartureAndArrival(origin.getSelectionModel().getSelectedItem(),
+                            destination.getSelectionModel().getSelectedItem(),
+                            Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
+                            Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
+        } catch (IOException e) {
+            flights = new ArrayList<>();
+        }
+
+        ArrayList<String> res = new ArrayList<>();
+        for (Flight flight : flights) {
+            res.add(String.valueOf(flight));
+        }
 
         resultList.getItems().clear();
-        resultList.getItems().addAll();
+        resultList.getItems().addAll("zaczęło się");
+        resultList.getItems().addAll(res);
+        resultList.getItems().addAll("udało się");
     }
 
 }
