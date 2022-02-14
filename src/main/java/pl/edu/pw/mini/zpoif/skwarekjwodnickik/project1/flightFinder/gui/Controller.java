@@ -10,7 +10,6 @@ import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Conver
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
-import java.util.function.Function;
 
 public class Controller {
 
@@ -42,7 +41,7 @@ public class Controller {
         FilteredList<String> filteredAirportsD = new FilteredList<>(airports, s->true);
 
         Callback<ListView<String>, ListCell<String>> tooltipFunction =
-                cell -> new ListCell<String>() {
+                cell -> new ListCell<>() {
                     final Tooltip tooltip = new Tooltip();
                     @Override
                     protected void updateItem(String item, boolean empty) {
@@ -94,7 +93,7 @@ public class Controller {
         String destinationValue = destination.getSelectionModel().getSelectedItem();
 
         resultList.getItems().clear();
-        resultList.getItems().addAll(originValue, destinationValue);
+        resultList.getItems().addAll();
     }
 
 }

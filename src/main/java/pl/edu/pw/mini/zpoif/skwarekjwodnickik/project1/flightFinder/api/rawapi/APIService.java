@@ -5,6 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface APIService {
@@ -23,7 +24,7 @@ public interface APIService {
     );
 
     @GET("api/flights/arrival")
-    Call<List<Flight>> getFlightsByArrival(
+    Call<ArrayList<Flight>> getFlightsByArrival(
             @Query("airport") String airport,
             @Query("begin") int begin,
             @Query("end") int end

@@ -29,11 +29,11 @@ public class FlightsServices {
 
     }
 
-    public List<Flight> getFlightsFromBeginToEndByArrival(String airport, int begin, int end) throws IOException {
+    public static ArrayList<Flight> getFlightsFromBeginToEndByArrival(String airport, int begin, int end) throws IOException {
 
         RetrofitServiceGenerator retrofitServiceGenerator = new RetrofitServiceGenerator();
-        Call<List<Flight>> call = retrofitServiceGenerator.generate().getFlightsByArrival(airport, begin, end);
-        List<Flight> flights = call.execute().body();
+        Call<ArrayList<Flight>> call = retrofitServiceGenerator.generate().getFlightsByArrival(airport, begin, end);
+        ArrayList<Flight> flights = call.execute().body();
         return flights;
 
     }
