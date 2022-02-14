@@ -140,7 +140,25 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("clicked on " + resultList.getSelectionModel().getSelectedItem());
+                Flight flight = resultList.getSelectionModel().getSelectedItem();
+                String text;
+                try {
+                    text = "Flight: " + flight.getIcao24() +
+                            "\n" +
+                            "From: " + Converters.IcaoToName(flight.getEstDepartureAirport()) +
+                            "\n" +
+                            "To: " + Converters.IcaoToName(flight.getEstArrivalAirport()) +
+                            "\n" +
+                            "First seen: " + Converters.UnixToRoman(flight.getFirstSeen()) +
+                            "\n" +
+                            "Last seen: " + Converters.UnixToRoman(flight.getLastSeen());
+                } catch (Exception e) {
+                    text = "";
+                }
+                Stage tmp = new Stage();
+                tmp.setTitle("Selected flight details");
+                tmp.setScene(new Scene(new Label(text)));
+                tmp.show();
             }
         });
     }
@@ -160,11 +178,6 @@ public class Controller {
 
         resultList.getItems().clear();
         resultList.getItems().addAll(flights);
-
-        Stage tmp = new Stage();
-        tmp.setTitle("Popup");
-        tmp.setScene(new Scene(new Group()));
-        tmp.show();
     }
 
 }
