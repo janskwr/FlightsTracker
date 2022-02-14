@@ -1,5 +1,6 @@
 package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -8,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.model.Flight;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServices;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Airport;
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.AirportsData;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Converters;
 
 import java.io.FileNotFoundException;
@@ -18,10 +21,10 @@ import java.util.ArrayList;
 public class Controller {
 
     @FXML
-    private ListView<String> destination;
+    private ListView<Airport> destination;
 
     @FXML
-    private ListView<String> origin;
+    private ListView<Airport> origin;
 
     @FXML
     private TextField destinationSearch;
@@ -40,24 +43,24 @@ public class Controller {
 
     @FXML
     private void initialize() throws FileNotFoundException, URISyntaxException {
-        ObservableList<String> airports = Converters.allIcaos();
-        FilteredList<String> filteredAirportsO = new FilteredList<>(airports, s->true);
-        FilteredList<String> filteredAirportsD = new FilteredList<>(airports, s->true);
+        ObservableList<Airport> airports = FXCollections.observableList(AirportsData.CSVConverter());
+        FilteredList<Airport> filteredAirportsO = new FilteredList<>(airports, s->true);
+        FilteredList<Airport> filteredAirportsD = new FilteredList<>(airports, s->true);
 
-        Callback<ListView<String>, ListCell<String>> tooltipFunction =
+        Callback<ListView<Airport>, ListCell<Airport>> tooltipFunction =
                 cell -> new ListCell<>() {
                     final Tooltip tooltip = new Tooltip();
                     @Override
-                    protected void updateItem(String item, boolean empty) {
+                    protected void updateItem(Airport item, boolean empty) {
                         super.updateItem(item, empty);
 
                         if (item == null || empty) {
                             setText(null);
                             setTooltip(null);
                         } else {
-                            setText(item);
+                            setText(item.getIcao());
                             try {
-                                tooltip.setText(Converters.IcaoToName(item));
+                                tooltip.setText(item.getName());
                             } catch (Exception e) {
                                 tooltip.setText(null);
                             }
@@ -72,7 +75,7 @@ public class Controller {
                 filteredAirportsO.setPredicate(s -> true);
             }
             else {
-                filteredAirportsO.setPredicate(s -> s.contains(filter));
+                filteredAirportsO.setPredicate(s -> s.getIcao().contains(filter) || s.getName().toUpperCase().contains(filter));
             }
         });
         origin.setItems(filteredAirportsO);
@@ -84,7 +87,7 @@ public class Controller {
                 filteredAirportsD.setPredicate(s -> true);
             }
             else {
-                filteredAirportsD.setPredicate(s -> s.contains(filter));
+                filteredAirportsD.setPredicate(s -> s.getIcao().contains(filter) || s.getName().toUpperCase().contains(filter));
             }
         });
         destination.setItems(filteredAirportsD);
@@ -96,8 +99,8 @@ public class Controller {
         ArrayList<Flight> flights;
         try {
             flights = FlightsServices.
-                    getFlightsFromBeginToEndByDepartureAndArrival(origin.getSelectionModel().getSelectedItem(),
-                            destination.getSelectionModel().getSelectedItem(),
+                    getFlightsFromBeginToEndByDepartureAndArrival(origin.getSelectionModel().getSelectedItem().getIcao(),
+                            destination.getSelectionModel().getSelectedItem().getIcao(),
                             Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
                             Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
         } catch (IOException e) {
