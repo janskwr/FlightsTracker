@@ -166,4 +166,4 @@ Project Link: [https://github.com/janskwr/FlightsTracker](https://github.com/jan
 [license-url]: https://github.com/janskwr/FlightsTracker/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/jan-skwarek-87b01419b/
-[product-screenshot]: images/screenshot.png
+/[product-screenshot]: images/screenshot.png
