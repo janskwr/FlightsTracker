@@ -53,6 +53,9 @@ public class FlightsServices {
                                                                                   int begin, int end) throws IOException {
         ArrayList<Flight> resultlist = new ArrayList<Flight>();
         ArrayList<Flight> templist = getFlightsFromBeginToEndByDeparture(depairport, begin, end);
+        if (templist == null){
+            return resultlist;
+        }
         for (Flight flight : templist){
             if(flight.getEstArrivalAirport().equals(arrairport)){
                 resultlist.add(flight);
