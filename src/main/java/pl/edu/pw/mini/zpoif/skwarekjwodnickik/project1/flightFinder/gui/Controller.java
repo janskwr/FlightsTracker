@@ -22,10 +22,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+/**
+ * Controller class responsible for GUI control.
+ */
 public class Controller {
-    /*
-    Controller class is responsible for GUI control
-     */
+
     @FXML
     private ListView<Airport> destination;
 

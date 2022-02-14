@@ -8,6 +8,11 @@ import retrofit2.http.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * API Service interface for Retrofit2.
+ * The @GET annotation tells the client which HTTP method to use and on which resource.
+ * The leading “/” on our relative URL tells Retrofit that it is an absolute path on the host.
+ */
 public interface APIService {
 
     @GET("api/flights/all")

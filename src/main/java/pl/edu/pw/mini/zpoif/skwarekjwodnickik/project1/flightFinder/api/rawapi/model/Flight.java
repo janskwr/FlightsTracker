@@ -2,9 +2,14 @@ package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.
 
 import java.util.Objects;
 
+/**
+ * Flight class for data received from REST API handled by Retrofit2.
+ * Contains getters and setters for every field.
+ * Constructors and toString() also provided.
+ */
 public class Flight {
 
-    public Flight(){
+    public Flight() {
     }
 
     public Flight(String icao24, int firstSeen, String estDepartureAirport, int lastSeen, String estArrivalAirport,
