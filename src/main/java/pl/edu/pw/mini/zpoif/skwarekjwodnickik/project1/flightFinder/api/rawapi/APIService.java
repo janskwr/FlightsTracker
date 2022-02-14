@@ -11,13 +11,13 @@ import java.util.List;
 public interface APIService {
 
     @GET("api/flights/all")
-    Call<List<Flight>> getFlights(
+    Call<ArrayList<Flight>> getFlights(
             @Query("begin") int begin,
             @Query("end") int end
     );
 
     @GET("api/flights/aircraft")
-    Call<List<Flight>> getFlightsByAircraft(
+    Call<ArrayList<Flight>> getFlightsByAircraft(
             @Query("icao24") String icao24,
             @Query("begin") int begin,
             @Query("end") int end
@@ -31,7 +31,7 @@ public interface APIService {
     );
 
     @GET("api/flights/departure")
-    Call<List<Flight>> getFlightsByDeparture(
+    Call<ArrayList<Flight>> getFlightsByDeparture(
             @Query("airport") String airport,
             @Query("begin") int begin,
             @Query("end") int end

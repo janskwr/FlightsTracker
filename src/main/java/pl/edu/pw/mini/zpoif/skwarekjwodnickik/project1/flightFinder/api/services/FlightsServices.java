@@ -7,24 +7,25 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FlightsServices {
 
-    public List<Flight> getFlightsFromBeginToEnd(int begin, int end) throws IOException {
+    public static ArrayList<Flight> getFlightsFromBeginToEnd(int begin, int end) throws IOException {
 
         RetrofitServiceGenerator retrofitServiceGenerator = new RetrofitServiceGenerator();
-        Call<List<Flight>> call = retrofitServiceGenerator.generate().getFlights(begin, end);
-        List<Flight> flights = call.execute().body();
+        Call<ArrayList<Flight>> call = retrofitServiceGenerator.generate().getFlights(begin, end);
+        ArrayList<Flight> flights = call.execute().body();
         return flights;
     }
 
-    public List<Flight> getFlightsFromBeginToEndByAircraft(String icao24, int begin, int end) throws IOException {
+    public static ArrayList<Flight> getFlightsFromBeginToEndByAircraft(String icao24, int begin, int end) throws IOException {
 
         RetrofitServiceGenerator retrofitServiceGenerator = new RetrofitServiceGenerator();
-        Call<List<Flight>> call = retrofitServiceGenerator.generate().getFlightsByAircraft(icao24, begin, end);
-        List<Flight> flights = call.execute().body();
+        Call<ArrayList<Flight>> call = retrofitServiceGenerator.generate().getFlightsByAircraft(icao24, begin, end);
+        ArrayList<Flight> flights = call.execute().body();
         return flights;
 
     }
@@ -38,14 +39,27 @@ public class FlightsServices {
 
     }
 
-    public List<Flight> getFlightsFromBeginToEndByDeparture(String airport, int begin, int end) throws IOException {
+    public static ArrayList<Flight> getFlightsFromBeginToEndByDeparture(String airport, int begin, int end) throws IOException {
 
         RetrofitServiceGenerator retrofitServiceGenerator = new RetrofitServiceGenerator();
-        Call<List<Flight>> call = retrofitServiceGenerator.generate().getFlightsByDeparture(airport, begin, end);
-        List<Flight> flights = call.execute().body();
+        Call<ArrayList<Flight>> call = retrofitServiceGenerator.generate().getFlightsByDeparture(airport, begin, end);
+        ArrayList<Flight> flights = call.execute().body();
         return flights;
 
     }
+
+    public static ArrayList<Flight> getFlightsFromBeginToEndByDepartureAndArrival(String depairport, String arrairport,
+                                                                                  int begin, int end) throws IOException {
+        ArrayList<Flight> resultlist = new ArrayList<Flight>();
+        ArrayList<Flight> templist = getFlightsFromBeginToEndByDeparture(depairport, begin, end);
+        for (Flight flight : templist){
+            if(flight.getEstArrivalAirport().equals(arrairport)){
+                resultlist.add(flight);
+            }
+        }
+        return resultlist;
+    }
+
 
 
 //    @Override
