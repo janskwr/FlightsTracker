@@ -108,7 +108,7 @@ public class Controller {
         for (Flight flight : flights) {
             res.add(String.valueOf(flight));
         }
-
+        //
         resultList.getItems().clear();
         resultList.getItems().addAll("zaczęło się");
         resultList.getItems().addAll(res);
