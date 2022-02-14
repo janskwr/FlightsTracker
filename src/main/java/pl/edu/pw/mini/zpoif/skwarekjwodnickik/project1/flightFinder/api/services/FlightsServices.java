@@ -1,5 +1,6 @@
 package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services;
 
+import org.jetbrains.annotations.NotNull;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.RetrofitServiceGenerator;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.model.Flight;
 import retrofit2.Call;

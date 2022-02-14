@@ -1,5 +1,7 @@
 package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.model;
 
+import java.util.Objects;
+
 public class Flight {
 
     public Flight(){
@@ -69,7 +71,9 @@ public class Flight {
     }
 
     public String getEstArrivalAirport() {
-        return estArrivalAirport;
+        String string = "";
+        return Objects.requireNonNullElse(this.estArrivalAirport, string);
+
     }
 
     public void setEstArrivalAirport(String estArrivalAirport) {
