@@ -6,7 +6,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -46,9 +45,11 @@ public class Controller {
     @FXML
     private ListView<Flight> resultList;
 
+    private static ObservableList<Airport> airports;
+
     @FXML
     private void initialize() throws FileNotFoundException, URISyntaxException {
-        ObservableList<Airport> airports = FXCollections.observableList(AirportsData.CSVConverter());
+        airports = FXCollections.observableList(AirportsData.CSVConverter());
         FilteredList<Airport> filteredAirportsO = new FilteredList<>(airports, s -> true);
         FilteredList<Airport> filteredAirportsD = new FilteredList<>(airports, s -> true);
 
