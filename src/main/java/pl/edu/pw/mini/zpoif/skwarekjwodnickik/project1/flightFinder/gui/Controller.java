@@ -110,9 +110,7 @@ public class Controller {
         }
         //
         resultList.getItems().clear();
-        resultList.getItems().addAll("zaczęło się");
         resultList.getItems().addAll(res);
-        resultList.getItems().addAll("udało się");
     }
 
 }
