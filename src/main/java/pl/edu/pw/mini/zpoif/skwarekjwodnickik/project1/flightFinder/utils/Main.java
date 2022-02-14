@@ -1,5 +1,6 @@
 package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.utils;
 
+import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.model.Flight;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServices;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServicesStandard;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Airport;
@@ -14,9 +15,12 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
 
-        Converters converters = new Converters();
-        System.out.println(converters.IcaoToName("XIUW"));
-
+        FlightsServices flightsServices = new FlightsServicesStandard();
+//        List<Flight> flights = flightsServices.getFlightsFromBeginToEnd(1517227200, 1517230800);
+        List<Flight> flights = flightsServices.getFlightsFromBeginToEnd(1517227200, 1517230800);
+        for(Flight flight : flights){
+            System.out.println(flight);
+        }
     }
 
 
