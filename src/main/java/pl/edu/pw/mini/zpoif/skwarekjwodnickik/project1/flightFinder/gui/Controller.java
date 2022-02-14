@@ -142,9 +142,22 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
                 Flight flight = resultList.getSelectionModel().getSelectedItem();
+                Airport departureairport = airports.stream()
+                        .filter(airport -> flight.getEstDepartureAirport().equals(airport.getIcao()))
+                        .findAny()
+                        .orElse(null);
+                Airport arrivalairport = airports.stream()
+                        .filter(airport -> flight.getEstArrivalAirport().equals(airport.getIcao()))
+                        .findAny()
+                        .orElse(null);
                 String text;
                 try {
-                    text = "Flight: " + flight.getIcao24() +
+                    assert departureairport != null;
+                    text = "Flight data: " +
+                            "\n" +
+                            "ICAO number: " + flight.getIcao24() +
+                            "\n" +
+                            "Callsign: " + flight.getCallsign() +
                             "\n" +
                             "From: " + Converters.IcaoToName(flight.getEstDepartureAirport()) +
                             "\n" +
@@ -152,7 +165,42 @@ public class Controller {
                             "\n" +
                             "First seen: " + Converters.UnixToRoman(flight.getFirstSeen()) +
                             "\n" +
-                            "Last seen: " + Converters.UnixToRoman(flight.getLastSeen());
+                            "Last seen: " + Converters.UnixToRoman(flight.getLastSeen()) +
+                            "\n" +
+                            "\n" +
+                            "Departure airport data: " +
+                            "\n" +
+                            "Name: " + departureairport.getName() +
+                            "\n" +
+                            "City: " + departureairport.getCity() +
+                            "\n" +
+                            "Country: " + departureairport.getCountry() +
+                            "\n" +
+                            "Latitude: " + departureairport.getLatitude() +
+                            "\n" +
+                            "Longitude: " + departureairport.getLongitude() +
+                            "\n" +
+                            "IATA number: " + departureairport.getIata() +
+                            "\n" +
+                            "ICAO number: " + departureairport.getIcao() +
+                            "\n" +
+                            "\n" +
+                            "Arrival airport data: " +
+                            "\n" +
+                            "Name: " + arrivalairport.getName() +
+                            "\n" +
+                            "City: " + arrivalairport.getCity() +
+                            "\n" +
+                            "Country: " + arrivalairport.getCountry() +
+                            "\n" +
+                            "Latitude: " + arrivalairport.getLatitude() +
+                            "\n" +
+                            "Longitude: " + arrivalairport.getLongitude() +
+                            "\n" +
+                            "IATA number: " + arrivalairport.getIata() +
+                            "\n" +
+                            "ICAO number: " + arrivalairport.getIcao()
+                    ;
                 } catch (Exception e) {
                     text = "";
                 }
