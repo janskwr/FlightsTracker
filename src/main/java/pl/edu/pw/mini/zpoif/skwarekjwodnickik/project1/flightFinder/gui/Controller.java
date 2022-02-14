@@ -39,7 +39,7 @@ public class Controller {
     private DatePicker dateStart;
 
     @FXML
-    private ListView<String> resultList;
+    private ListView<Flight> resultList;
 
     @FXML
     private void initialize() throws FileNotFoundException, URISyntaxException {
@@ -92,6 +92,30 @@ public class Controller {
         });
         destination.setItems(filteredAirportsD);
         destination.setCellFactory(tooltipFunction);
+
+        resultList.setCellFactory(cell -> new ListCell<>() {
+            final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(Flight flight, boolean empty) {
+                super.updateItem(flight, empty);
+
+                if (flight == null || empty) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText("Flight " +
+                            flight.getIcao24() +
+                            " from " +
+                            flight.getEstDepartureAirport() +
+                            " to " +
+                            flight.getEstArrivalAirport());
+
+                    tooltip.setText(String.valueOf(flight));
+                    setTooltip(tooltip);
+                }
+            }
+        });
     }
 
     @FXML
@@ -107,13 +131,8 @@ public class Controller {
             flights = new ArrayList<>();
         }
 
-        ArrayList<String> res = new ArrayList<>();
-        for (Flight flight : flights) {
-            res.add(String.valueOf(flight));
-        }
-        //
         resultList.getItems().clear();
-        resultList.getItems().addAll(res);
+        resultList.getItems().addAll(flights);
     }
 
 }

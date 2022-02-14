@@ -3,6 +3,7 @@ package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.gui;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
