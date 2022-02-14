@@ -4,8 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.rawapi.model.Flight;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.api.services.FlightsServices;
@@ -116,6 +121,13 @@ public class Controller {
                 }
             }
         });
+        resultList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("clicked on " + resultList.getSelectionModel().getSelectedItem());
+            }
+        });
     }
 
     @FXML
@@ -133,6 +145,11 @@ public class Controller {
 
         resultList.getItems().clear();
         resultList.getItems().addAll(flights);
+
+        Stage tmp = new Stage();
+        tmp.setTitle("Popup");
+        tmp.setScene(new Scene(new Group()));
+        tmp.show();
     }
 
 }
