@@ -49,12 +49,13 @@ public class Controller {
     @FXML
     private void initialize() throws FileNotFoundException, URISyntaxException {
         ObservableList<Airport> airports = FXCollections.observableList(AirportsData.CSVConverter());
-        FilteredList<Airport> filteredAirportsO = new FilteredList<>(airports, s->true);
-        FilteredList<Airport> filteredAirportsD = new FilteredList<>(airports, s->true);
+        FilteredList<Airport> filteredAirportsO = new FilteredList<>(airports, s -> true);
+        FilteredList<Airport> filteredAirportsD = new FilteredList<>(airports, s -> true);
 
         Callback<ListView<Airport>, ListCell<Airport>> tooltipFunction =
                 cell -> new ListCell<>() {
                     final Tooltip tooltip = new Tooltip();
+
                     @Override
                     protected void updateItem(Airport item, boolean empty) {
                         super.updateItem(item, empty);
@@ -74,24 +75,22 @@ public class Controller {
                     }
                 };
 
-        originSearch.textProperty().addListener(obs->{
+        originSearch.textProperty().addListener(obs -> {
             String filter = originSearch.getText().toUpperCase();
-            if(filter.length() == 0) {
+            if (filter.length() == 0) {
                 filteredAirportsO.setPredicate(s -> true);
-            }
-            else {
+            } else {
                 filteredAirportsO.setPredicate(s -> s.getIcao().contains(filter) || s.getName().toUpperCase().contains(filter));
             }
         });
         origin.setItems(filteredAirportsO);
         origin.setCellFactory(tooltipFunction);
 
-        destinationSearch.textProperty().addListener(obs->{
+        destinationSearch.textProperty().addListener(obs -> {
             String filter = destinationSearch.getText().toUpperCase();
-            if(filter.length() == 0) {
+            if (filter.length() == 0) {
                 filteredAirportsD.setPredicate(s -> true);
-            }
-            else {
+            } else {
                 filteredAirportsD.setPredicate(s -> s.getIcao().contains(filter) || s.getName().toUpperCase().contains(filter));
             }
         });
@@ -116,7 +115,23 @@ public class Controller {
                             " to " +
                             flight.getEstArrivalAirport());
 
-                    tooltip.setText(String.valueOf(flight));
+                    try {
+                        tooltip.setText(
+
+                                "Flight: " + flight.getIcao24() +
+                                        "\n" +
+                                        "From: " + Converters.IcaoToName(flight.getEstDepartureAirport()) +
+                                        "\n" +
+                                        "To: " + Converters.IcaoToName(flight.getEstArrivalAirport()) +
+                                        "\n" +
+                                        "First seen: " + Converters.UnixToRoman(flight.getFirstSeen()) +
+                                        "\n" +
+                                        "Last seen: " + Converters.UnixToRoman(flight.getLastSeen())
+
+                        );
+                    } catch (FileNotFoundException | URISyntaxException e) {
+                        e.printStackTrace();
+                    }
                     setTooltip(tooltip);
                 }
             }
