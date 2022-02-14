@@ -9,9 +9,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RetrofitClient implements Callback<List<Flight>> {
+public class RetrofitClient implements Callback<ArrayList<Flight>> {
 
     static final String BASE_URL = "https://opensky-network.org/";
 
@@ -27,12 +28,12 @@ public class RetrofitClient implements Callback<List<Flight>> {
 
         APIService apiService = retrofit.create(APIService.class);
 
-        Call<List<Flight>> call = apiService.getFlights(1517227200, 1517230800);
+        Call<ArrayList<Flight>> call = apiService.getFlights(1517227200, 1517230800);
         call.enqueue(this);
     }
 
     @Override
-    public void onResponse(Call<List<Flight>> call, Response<List<Flight>> response) {
+    public void onResponse(Call<ArrayList<Flight>> call, Response<ArrayList<Flight>> response) {
         if(response.isSuccessful()) {
             List<Flight> changesList = response.body();
             changesList.forEach(System.out::println);
@@ -42,7 +43,7 @@ public class RetrofitClient implements Callback<List<Flight>> {
     }
 
     @Override
-    public void onFailure(Call<List<Flight>> call, Throwable t) {
+    public void onFailure(Call<ArrayList<Flight>> call, Throwable t) {
         t.printStackTrace();
     }
 
