@@ -4,13 +4,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.util.Callback;
 import pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model.Converters;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.function.Function;
 
 public class Controller {
 
@@ -41,6 +41,28 @@ public class Controller {
         FilteredList<String> filteredAirportsO = new FilteredList<>(airports, s->true);
         FilteredList<String> filteredAirportsD = new FilteredList<>(airports, s->true);
 
+        Callback<ListView<String>, ListCell<String>> tooltipFunction =
+                cell -> new ListCell<String>() {
+                    final Tooltip tooltip = new Tooltip();
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (item == null || empty) {
+                            setText(null);
+                            setTooltip(null);
+                        } else {
+                            setText(item);
+                            try {
+                                tooltip.setText(Converters.IcaoToName(item));
+                            } catch (Exception e) {
+                                tooltip.setText(null);
+                            }
+                            setTooltip(tooltip);
+                        }
+                    }
+                };
+
         originSearch.textProperty().addListener(obs->{
             String filter = originSearch.getText().toUpperCase();
             if(filter.length() == 0) {
@@ -51,6 +73,7 @@ public class Controller {
             }
         });
         origin.setItems(filteredAirportsO);
+        origin.setCellFactory(tooltipFunction);
 
         destinationSearch.textProperty().addListener(obs->{
             String filter = destinationSearch.getText().toUpperCase();
@@ -62,6 +85,7 @@ public class Controller {
             }
         });
         destination.setItems(filteredAirportsD);
+        destination.setCellFactory(tooltipFunction);
     }
 
     @FXML
