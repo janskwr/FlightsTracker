@@ -7,11 +7,12 @@ import java.io.FileReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AirportsData {
 
-    public List<Airport> CSVConverter() throws FileNotFoundException, URISyntaxException {
+    public static ArrayList<Airport> CSVConverter() throws FileNotFoundException, URISyntaxException {
 
         URL resource = AirportsData.class.getResource("/airports.csv");
 //        File file = Paths.get(resource.toURI()).toFile(); // return a file
@@ -19,7 +20,7 @@ public class AirportsData {
 
 //        String fileName = "/hdd/IdeaProjects/FlightFinder/src/main/resources/airports.csv";
 
-        List<Airport> airports = new CsvToBeanBuilder<Airport>(new FileReader(filepath))
+        ArrayList<Airport> airports = (ArrayList<Airport>) new CsvToBeanBuilder<Airport>(new FileReader(filepath))
                 .withType(Airport.class)
                 .build()
                 .parse();
