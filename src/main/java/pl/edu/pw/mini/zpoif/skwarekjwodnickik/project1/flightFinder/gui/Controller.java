@@ -170,11 +170,33 @@ public class Controller {
     void search(ActionEvent event) {
         ArrayList<Flight> flights;
         try {
-            flights = FlightsServices.
-                    getFlightsFromBeginToEndByDepartureAndArrival(origin.getSelectionModel().getSelectedItem().getIcao(),
-                            destination.getSelectionModel().getSelectedItem().getIcao(),
-                            Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
-                            Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
+
+            if (origin.getSelectionModel().getSelectedItem() == null && destination.getSelectionModel().getSelectedItem() == null) {
+                originSearch.setText("EPWA");
+                flights = FlightsServices.
+                        getFlightsFromBeginToEndByDeparture("EPWA",
+                                Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
+                                Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
+            }
+            else if (origin.getSelectionModel().getSelectedItem() == null) {
+                flights = FlightsServices.
+                        getFlightsFromBeginToEndByArrival(destination.getSelectionModel().getSelectedItem().getIcao(),
+                                Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
+                                Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
+            }
+            else if (destination.getSelectionModel().getSelectedItem() == null) {
+                flights = FlightsServices.
+                        getFlightsFromBeginToEndByDeparture(origin.getSelectionModel().getSelectedItem().getIcao(),
+                                Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
+                                Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
+            }
+            else {
+                flights = FlightsServices.
+                        getFlightsFromBeginToEndByDepartureAndArrival(origin.getSelectionModel().getSelectedItem().getIcao(),
+                                destination.getSelectionModel().getSelectedItem().getIcao(),
+                                Converters.RomanToUnix(Converters.localDatetoDate(dateStart.getValue())),
+                                Converters.RomanToUnix(Converters.localDatetoDate(dateEnd.getValue())));
+            }
         } catch (IOException e) {
             flights = new ArrayList<>();
         }
