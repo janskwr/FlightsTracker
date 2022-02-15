@@ -5,6 +5,10 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Retrofit2 service generator.
+ * Reusable class that allows us to create this object once and reuse it for the lifetime of our application.
+ */
 public class RetrofitServiceGenerator {
 
     public final String BASE_URL = "https://opensky-network.org/";
@@ -22,8 +26,6 @@ public class RetrofitServiceGenerator {
         APIService apiService = retrofit.create(APIService.class);
         return apiService;
 
-//        Call<List<Flight>> call = apiService.getFlights(1517227200, 1517230800);
-//        call.enqueue(this);
     }
 
 }

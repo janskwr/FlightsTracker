@@ -12,6 +12,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class contains synchronous calls that pull data from REST API.
+ */
 public class FlightsServices {
 
     public static ArrayList<Flight> getFlightsFromBeginToEnd(int begin, int end) throws IOException {
@@ -63,23 +66,4 @@ public class FlightsServices {
         }
         return resultlist;
     }
-
-
-
-//    @Override
-//    public void onResponse(Call<List<Flight>> call, Response<List<Flight>> response) {
-//        if (response.isSuccessful()) {
-//            List<Flight> flightsList = response.body();
-//
-////            flightsList.forEach(System.out::println);
-//        } else {
-//            System.out.println(response.errorBody());
-//        }
-//    }
-//
-//    @Override
-//    public void onFailure(Call<List<Flight>> call, Throwable t) {
-//        t.printStackTrace();
-//    }
-
 }

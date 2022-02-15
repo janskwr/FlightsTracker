@@ -8,10 +8,10 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.File;
 
-public class MainGUI extends Application{
-    /*
-    MainGUI class initializes whole application and graphical user interface
-     */
+/**
+ * MainGUI class initializes whole application and graphical user interface.
+ */
+public class MainGUI extends Application {
 
     public static void main(String[] args) {
         launch(args);

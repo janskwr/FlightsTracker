@@ -2,9 +2,14 @@ package pl.edu.pw.mini.zpoif.skwarekjwodnickik.project1.flightFinder.model;
 
 import com.opencsv.bean.CsvBindByName;
 
+/**
+ * Airport class for data received from csv file handled by opencsv.
+ * Contains getters and setters for every field.
+ * Constructors and toString() also provided.
+ */
 public class Airport {
 
-    public Airport(){
+    public Airport() {
     }
 
     public Airport(String name, String city, String country, String iata, String icao, String latitude,
